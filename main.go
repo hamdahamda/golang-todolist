@@ -73,6 +73,7 @@ func main() {
 		return c.JSON(activities)
 	})
 
+	// POST Activities
 	app.Post("/activities", func(c *fiber.Ctx) error {
 		var activity Activity
 		err := c.BodyParser(&activity)
@@ -117,6 +118,7 @@ func main() {
 		return c.Status(fiber.StatusOK).JSON(fiber.Map{"status": "success"})
 	})
 
+	// DELETE activities/:id
 	app.Delete("/activities/:id", func(c *fiber.Ctx) error {
 		id := c.Params("id")
 		sqlStatement := `DELETE FROM activities WHERE id = $1`
